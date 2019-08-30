@@ -107,7 +107,7 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
 
     private var images: List<T> = listOf()
     private var imageLoader: ImageLoader<T>? = null
-    private lateinit var transitionImageAnimator: TransitionImageAnimator
+    private var transitionImageAnimator: TransitionImageAnimator
 
     private var startPosition: Int = 0
         set(value) {
@@ -132,7 +132,7 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
 
         transitionImageContainer = findViewById(R.id.transitionImageContainer)
         transitionImageView = findViewById(R.id.transitionImageView)
-
+        transitionImageAnimator = createTransitionImageAnimator(null)
         imagesPager = findViewById(R.id.imagesPager)
         imagesPager.addOnPageChangeListener(
             onPageSelected = {
