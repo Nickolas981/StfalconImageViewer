@@ -26,6 +26,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.core.view.GestureDetectorCompat
+import androidx.viewpager.widget.ViewPager
 import com.stfalcon.imageviewer.R
 import com.stfalcon.imageviewer.common.extensions.*
 import com.stfalcon.imageviewer.common.gestures.detector.SimpleOnGestureListener
@@ -54,6 +55,7 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
 
     internal var onDismiss: (() -> Unit)? = null
     internal var onPageChange: ((position: Int) -> Unit)? = null
+    internal var onPageOffsetChange: ((position: Int, offset: Float) -> Unit)? = null
 
     internal val isScaled
         get() = imagesAdapter?.isScaled(currentPosition) ?: false
@@ -129,6 +131,18 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
                     }
                     onPageChange?.invoke(it)
                 })
+
+        imagesPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                onPageOffsetChange?.invoke(position, positionOffset)
+            }
+
+            override fun onPageSelected(position: Int) {
+            }
+        })
 
         directionDetector = createSwipeDirectionDetector()
         gestureDetector = createGestureDetector()

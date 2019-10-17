@@ -99,6 +99,7 @@ internal class ImageViewerDialog<T>(
             setImages(builderData.images, builderData.startPosition, builderData.imageLoader)
 
             onPageChange = { position -> builderData.imageChangeListener?.onImageChange(position) }
+            onPageOffsetChange = { position, offset -> builderData.imageChangeListener?.onImageChange(position, offset) }
             onDismiss = { dialog.dismiss() }
         }
     }
