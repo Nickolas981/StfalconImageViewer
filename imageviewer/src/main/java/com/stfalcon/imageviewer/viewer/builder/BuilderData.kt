@@ -21,6 +21,7 @@ import android.view.View
 import android.widget.ImageView
 import com.stfalcon.imageviewer.listeners.OnDismissListener
 import com.stfalcon.imageviewer.listeners.OnImageChangeListener
+import com.stfalcon.imageviewer.listeners.OnImageOffsetChangeListener
 import com.stfalcon.imageviewer.loader.ImageLoader
 
 internal class BuilderData<T>(
@@ -30,6 +31,7 @@ internal class BuilderData<T>(
     var backgroundColor = Color.BLACK
     var startPosition: Int = 0
     var imageChangeListener: OnImageChangeListener? = null
+    var imageOffsetChangeListener: OnImageOffsetChangeListener? = null
     var onDismissListener: OnDismissListener? = null
     var overlayView: View? = null
     var imageMarginPixels: Int = 0
